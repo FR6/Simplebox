@@ -1,7 +1,6 @@
 # Simplebox #
 
-... just a simple box.
-
+Simple box is a lightweight lightbox-like jQuery plugin.
 
 # Usage #
 
@@ -23,6 +22,8 @@
     });
 
 where content could be a string, dom element or jQuery element.
+
+To close: $.simplebox.close();
 
 
 *Shortcuts*

@@ -51,6 +51,17 @@
                 });
 				
 				$.simplebox.gallery("demo");
+
+				//
+				// Multiple box example
+				//
+
+				$('#btMulti-1').click(function(){
+					
+					$.simplebox.show($('#multi-content-1'), {
+                      
+                    });
+				});
 				
 			});	
 		</script>
@@ -117,8 +128,13 @@ $.simplebox.confirm("...", function(){
 <pre>
 $.simplebox.gallery("groupname");
 </pre>
-
 			</p> 			
+
+		<h2>Test: Bug hidden div</h2>		
+		<button id="btMulti-1">Open box</button>
+		<div id="multi-content-1" class="multi-content">
+			...
+		</div>		
         
         <h2>Code</h2>
         <p><a href="https://github.com/aheinze/Simplebox">Fork me on github</a></p>

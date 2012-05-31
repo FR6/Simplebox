@@ -2,8 +2,9 @@
  * Simplebox v1.00
  * published under the MIT - License
  * author: Artur Heinze
+ *
+ * Edited by: francis.houle@gmail.com
  */
-
 (function($){
 
     var $this = null;
@@ -14,6 +15,7 @@
         options: {},
         persist: false,
         
+        //Prepare the dialog
         show: function(content, options) {
             
             if(this.box) {this.clear();}
@@ -36,6 +38,7 @@
 				'onClose'     : function(){}
             },options);
 			
+            //Template dialog
             var tplDlg = '<div class="simplebox-window '+$this.options.theme+'">';
                 tplDlg+=  '<div class="simplebox-closebutton"></div>';
                 
@@ -58,6 +61,7 @@
                 $this.close();
             });
 			
+            //Add dialog buttons
             if(this.options.buttons){
                 
                 var btns = this.box.find(".simplebox-buttons");
@@ -73,6 +77,7 @@
                this.box.find(".simplebox-buttonsbar").hide(); 
             }
 			
+            //Gallery buttons
 			if(this.options.gallery){
 
 				this.box.find(".simplebox-nextbutton").one("click", function(){
@@ -84,6 +89,7 @@
 				});
 			}
             
+            //Centering the dialog
             if($this.options.height != 'auto'){
                 this.box.find(".simplebox-innercontent").css({
                   'height'    : $this.options.height,
@@ -116,6 +122,7 @@
                 opacity: 1
             }, this.options.speed, this.options.easing, function(){
             
+                //note Seems that this can cause a bug
                 //focus
                 if($this.box.find(":input:first").length) {
                     $this.box.find(":input:first").focus();
@@ -236,7 +243,14 @@
             
             if(!this.box) {return;}
             
+            //Put back the content inside is parent
             if (this.persist) {
+
+                //Hide back if needed
+                if(!this.persist.data("sb-persist-wasvisible")){
+                    this.persist.hide();
+                }
+
                 this.persist.appendTo(this.persist.data("sb-persist-parent"));
                 this.persist = false;
             }
@@ -263,6 +277,7 @@
           return this;
         },
 
+        //Set the content of the dialog
         setContent: function(content){ 
             
             if(!this.box) {return;}
@@ -271,9 +286,18 @@
 				// convert DOM object to a jQuery object
 				content = content instanceof jQuery ? content : $(content);
                 
+                //Save the current position of the object
                 if(content.parent().length) {
+
+                    //Detect if the object was hidden, so we have to make it visible in the dialog
+                    var objWasVisible = content.is(':visible');
+                    if(!objWasVisible) {
+                        content.show();                        
+                    }
+
                     this.persist = content;
                     this.persist.data("sb-persist-parent", content.parent());
+                    this.persist.data("sb-persist-wasvisible", objWasVisible);
                 }
 			}
 			else if (typeof content === 'string' || typeof content === 'number') {
@@ -290,6 +314,7 @@
             return this;
         },
         
+        //Display the dialog
         showOverlay: function(){
             
             if(!this.overlay && !$("#simplebox-overlay").length){
