@@ -4,6 +4,8 @@ Simple box is a lightweight lightbox-like jQuery plugin.
 
 # Usage #
 
+Open dialog: 
+
     $.simplebox.show(content, {
         //settings
         'title'     : false,
@@ -23,8 +25,9 @@ Simple box is a lightweight lightbox-like jQuery plugin.
 
 where content could be a string, dom element or jQuery element.
 
-To close: $.simplebox.close();
+Close dialog: 
 
+    $.simplebox.close();
 
 *Shortcuts*
 
