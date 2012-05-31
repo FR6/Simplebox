@@ -58,9 +58,12 @@
 
 				$('#btMulti-1').click(function(){
 					
-					$.simplebox.show($('#multi-content-1'), {
-                      
-                    });
+					$.simplebox.show($('#multi-content-1'), {});
+				});
+
+				$('#btMulti-2').click(function(){
+					
+					$.simplebox.show($('#multi-content-2'), {});
 				});
 				
 			});	
@@ -68,7 +71,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-            <h1>Simplebox <span>- a product by <a href="http://d-xp.com">d-xp.com</a></span></h1>
+            <h1>Simplebox <span> originaly created by <a href="http://d-xp.com">d-xp.com</a></span></h1>
             
             <p>
                 ... just a simple box.
@@ -130,14 +133,22 @@ $.simplebox.gallery("groupname");
 </pre>
 			</p> 			
 
-		<h2>Test: Bug hidden div</h2>		
-		<button id="btMulti-1">Open box</button>
+		<h2>Multiple window</h2>
+		<p>Opening multiple dialogs will use the same dialog box.</p>
+		<button id="btMulti-1">Open box #1</button>
 		<div id="multi-content-1" class="multi-content">
-			...
-		</div>		
+			<h3>Box #1</h3>
+			<p>
+				<button id="btMulti-2">Open box #2</div>
+			</p>
+		</div>
+		<div id="multi-content-2" class="multi-content">
+			<h3>Box #2</h3>
+			<p>When close the box #1 will open again.</p>
+		</div>	
         
         <h2>Code</h2>
-        <p><a href="https://github.com/aheinze/Simplebox">Fork me on github</a></p>
+        <p><a href="https://github.com/FR6/Simplebox">Fork me on github</a></p>
             
         </div>
 

@@ -14,11 +14,22 @@
         box: null,
         options: {},
         persist: false,
+        previousObj: null, //When there is allready a dialog open
+        previousObjOpts: null,
         
         //Prepare the dialog
         show: function(content, options) {
             
-            if(this.box) {this.clear();}
+            if(this.box) {
+
+                //Save the previous dialog if there is one
+                if(this.persist){
+                    this.previousObj = this.persist;
+                    this.previousObjOpts = this.options;
+                }
+
+                this.clear();
+            }
             
             this.options = $.extend({
                 'title'     : false,
@@ -227,11 +238,23 @@
             }
             
             this.overlay.fadeOut();
+
+            var _this = this;
             
             this.box.animate({
                 'opacity': 0
             }, this.options.speed, this.options.easing, function(){
-                $this.clear();
+                
+                //Reopen previous dialog
+                if(_this.previousObj){
+
+                    _this.show(_this.previousObj, _this.previousObjOpts);
+                    _this.previousObj = null;
+                    _this.previousObjOpts = null;  
+                    
+                }else{
+                    $this.clear();               
+                }
             });
 			
 			this.options.onClose.apply(this);
