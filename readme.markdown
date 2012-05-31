@@ -41,3 +41,9 @@ Close dialog:
     $.simplebox.confirm("...", function(){ 
         //your callback code
     });
+
+# Change log #
+
+2012/05/31: 
+  fixed: When the content is a hidden div, when the dialog is closed it leaves the content visible.
+  added: Allow to open multiple dialogs (open a dialog from another dialog; when we close the second dialog, we reopen the first one).
